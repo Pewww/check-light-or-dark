@@ -2,6 +2,7 @@ import lightOrDarkColor from './lib/lightOrDarkColor';
 import CanvasImage from './lib/canvasImage';
 import {BRIGHTNESS_DEGREE} from './constants/degrees';
 import getBrightness from './lib/brightness';
+import {rgbaToRgb} from './lib/conversion';
 
 interface ILightOrDarkParams {
   backgroundImg: CanvasImageSource;
@@ -18,12 +19,10 @@ function filterBrightness(imageData: Uint8ClampedArray) {
     const r = _imageData[idx + 0];
     const g = _imageData[idx + 1];
     const b = _imageData[idx + 2];
-
-    // a 어케 해야함 ㅋㅋ
-    const a = _imageData[idx + 3];
+    const a = (_imageData[idx + 3] / 255);
 
     brightnessArr.push(
-      getBrightness(r, g, b)
+      getBrightness(rgbaToRgb(r, g, b, a))
     );
   }
 

@@ -31,25 +31,17 @@ export default function lightOrdarkColor(color: string) {
   } = VALIDATE_REGEX;
 
   if (hexRegex.test(color)) {
-    const {
-      r,
-      g,
-      b
-    } = hexToRgb(color);
-    
-    const brightness = getBrightness(r, g, b);
+    const brightness = getBrightness(
+      hexToRgb(color)
+    );
 
     return brightness > BRIGHTNESS_DEGREE
       ? 'light'
       : 'dark';
   } else if (rgbRegex.test(color)) {
-    const {
-      r,
-      g,
-      b
-    } = filterRgbOrRgba(color);
-
-    const brightness = getBrightness(r, g, b);
+    const brightness = getBrightness(
+      filterRgbOrRgba(color)
+    );
 
     return brightness > BRIGHTNESS_DEGREE
       ? 'light'
