@@ -2,48 +2,32 @@ import {VALIDATE_REGEX} from '../constants/validates';
 import {MATCH_REGEX} from '../constants/match';
 import {BRIGHTNESS_DEGREE} from '../constants/degrees';
 import getBrightness from './brightness';
+import {hexToRgb, rgbaToRgb} from './conversion';
 
-function getCompleteHexColor(hexColor: string) {
-  if (hexColor.length === 3) {
-    const [r, g, b] = hexColor.split('');
+function filterRgbOrRgba(color: string) {
+  const {MATCH_RGB_RGBA_COLOR} = MATCH_REGEX;
+  const [, r, g, b, a] = color.match(MATCH_RGB_RGBA_COLOR);
 
-    return `${r + r}${g + g}${b + b}`;
+  const _r = parseInt(r, 10);
+  const _g = parseInt(g, 10);
+  const _b = parseInt(b, 10);
+
+  if (a) {
+    const _a = parseFloat(a);
+    return rgbaToRgb(_r, _g, _b, _a);
   }
 
-  return hexColor;
-}
-
-function hexToRgb(hexColor: string) {
-  const hexWithoutHash = hexColor.slice(1);
-  const completeHexColor = getCompleteHexColor(hexWithoutHash);
-  const hexToDecimal = parseInt(completeHexColor, 16);
-
-  const r = (hexToDecimal >> 16) & 255;
-  const g = (hexToDecimal >> 8) & 255;
-  const b = hexToDecimal & 255;
-
   return {
-    r,
-    g,
-    b
-  };
-}
-
-function filterRgb(rgbColor: string) {
-  const {MATCH_RGB_COLOR} = MATCH_REGEX;
-  const [, r, g, b] = rgbColor.match(MATCH_RGB_COLOR);
-
-  return {
-    r: parseInt(r, 10),
-    g: parseInt(g, 10),
-    b: parseInt(b, 10)
+    r: _r,
+    g: _g,
+    b: _b
   };
 }
 
 export default function lightOrdarkColor(color: string) {
   const {
     VALIDATE_HEX_COLOR: hexRegex,
-    VALIDATE_RGB_COLOR: rgbRegex
+    VALIDATE_RGB_RGBA_COLOR: rgbRegex
   } = VALIDATE_REGEX;
 
   if (hexRegex.test(color)) {
@@ -63,7 +47,7 @@ export default function lightOrdarkColor(color: string) {
       r,
       g,
       b
-    } = filterRgb(color);
+    } = filterRgbOrRgba(color);
 
     const brightness = getBrightness(r, g, b);
 
