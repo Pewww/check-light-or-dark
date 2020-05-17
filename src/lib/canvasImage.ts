@@ -30,7 +30,7 @@ export default class CanvasImage implements ICanvasImage {
     y = 0,
     width = this.imageWidth as number,
     height = this.imageHeight as number
-  }) {
+  } = {}) {
     return this.ctx.getImageData(x, y, width, height);
   }
 }
