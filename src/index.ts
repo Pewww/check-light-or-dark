@@ -21,8 +21,10 @@ function filterBrightness(imageData: Uint8ClampedArray) {
     const b = _imageData[idx + 2];
     const a = (_imageData[idx + 3] / 255);
 
+    // @TODO: rgbaToRgb 로직 재검토
     brightnessArr.push(
-      getBrightness(rgbaToRgb(r, g, b, a))
+      // getBrightness(rgbaToRgb(r, g, b, a))
+      getBrightness({r, g, b})
     );
   }
 

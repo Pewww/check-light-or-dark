@@ -17,11 +17,11 @@ export default class CanvasImage implements ICanvasImage {
 
   constructor(image: CanvasImageSource) {
     this.canvas = document.createElement('canvas');
+    this.ctx = this.canvas.getContext('2d');
 
     this.imageWidth = image.width;
     this.imageHeight = image.height;
 
-    this.ctx = this.canvas.getContext('2d');
     this.ctx.drawImage(image, 0, 0);
   }
 
