@@ -5,7 +5,7 @@ import getBrightness from './lib/brightness';
 import {rgbaToRgb} from './lib/conversion';
 
 interface ILightOrDarkParams {
-  backgroundImg: CanvasImageSource;
+  backgroundImg?: CanvasImageSource;
   targetText?: HTMLElement;
   color?: string;
 }
@@ -71,7 +71,7 @@ export default function lightOrDark({
     return lightOrDarkColor(color);
   }
 
-  return targetText
+  return (backgroundImg && targetText)
     ? backgroundImgAndText(backgroundImg, targetText)
     : onlyBackgroundImg(backgroundImg);
 }
