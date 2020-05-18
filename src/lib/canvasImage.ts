@@ -15,13 +15,11 @@ export default class CanvasImage implements ICanvasImage {
   private imageWidth: number | SVGAnimatedLength;
   private imageHeight: number | SVGAnimatedLength;
 
-  // TypeError: Cannot read property 'imageWidth' of undefined
-
   constructor(image: CanvasImageSource) {
     this.canvas = document.createElement('canvas');
 
-    this.imageWidth = image.width || 0;
-    this.imageHeight = image.height || 0;
+    this.imageWidth = image.width;
+    this.imageHeight = image.height;
 
     this.ctx = this.canvas.getContext('2d');
     this.ctx.drawImage(image, 0, 0);

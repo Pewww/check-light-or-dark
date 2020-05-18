@@ -51,8 +51,8 @@ function backgroundImgAndText(backgroundImg: CanvasImageSource, targetText: HTML
 }
 
 function onlyBackgroundImg(backgroundImg: CanvasImageSource) {
-  const {getImageData} = new CanvasImage(backgroundImg);
-  const imageData = getImageData().data;
+  const canvasImage = new CanvasImage(backgroundImg);
+  const imageData = canvasImage.getImageData().data;
   const brightnessArr = filterBrightness(imageData);
 
   return checkLightOrDark(brightnessArr);
