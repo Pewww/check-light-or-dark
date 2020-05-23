@@ -2,7 +2,7 @@ import lightOrDarkColor from './lib/lightOrDarkColor';
 import CanvasImage, {IGetImageDataParams} from './lib/canvasImage';
 import {BRIGHTNESS_DEGREE} from './constants/degrees';
 import getBrightness from './lib/brightness';
-import {rgbaToRgb} from './lib/conversion';
+// import {rgbaToRgb} from './lib/conversion';
 
 interface ILightOrDarkParams extends IGetImageDataParams {
   image: string;
