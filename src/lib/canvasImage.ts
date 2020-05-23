@@ -1,4 +1,4 @@
-interface IGetImageDataParams {
+export interface IGetImageDataParams {
   x?: number;
   y?: number;
   width?: number;
@@ -6,64 +6,33 @@ interface IGetImageDataParams {
 }
 
 interface ICanvasImage {
-  filterBackgroundImg: (backgroundImg: string) => string;
-  loadImage: (src: string) => Promise<HTMLImageElement>;
+  drawImage: () => Promise<HTMLImageElement>;
   getImageData: (params: IGetImageDataParams) => Promise<ImageData>;
-  drawImage: () => Promise<CanvasImageSource>;
-  isImgTag: (element: HTMLElement) => boolean;
 }
 
 export default class CanvasImage implements ICanvasImage {
   private canvas: HTMLCanvasElement;
   private ctx: CanvasRenderingContext2D;
-  private image: CanvasImageSource;
+  private image: string;
 
-  constructor(image: CanvasImageSource) {
+  constructor(image: string) {
     this.canvas = document.createElement('canvas');
     this.ctx = this.canvas.getContext('2d');
 
     this.image = image;
   }
 
-  filterBackgroundImg(backgroundImg: string) {
-    const [, url = ''] = backgroundImg.split('"');
-    return url;
-  }
-
-  loadImage(src: string): Promise<HTMLImageElement> {
+  drawImage(): Promise<HTMLImageElement> {
     return new Promise(resolve => {
       const image = new Image();
-      image.setAttribute('src', src);
-      
+      image.setAttribute('src', this.image);
+      image.setAttribute('crossOrigin', 'anonymous');
+
       image.onload = () => {
         this.ctx.drawImage(image, 0, 0);
         resolve(image);
       };
     });
-  }
-
-  isImgTag(element: HTMLElement) {
-    return element.tagName === 'IMG';
-  }
-
-  drawImage(): Promise<CanvasImageSource> {
-    try {
-      if (this.isImgTag(this.image as HTMLElement)) {
-        return new Promise(resolve => {
-          this.ctx.drawImage(this.image, 0, 0);
-          resolve(this.image);
-        });
-      }
-  
-      const cssObj = window.getComputedStyle(this.image as Element);
-      const backgroundImg = cssObj.getPropertyValue('background-image');
-  
-      return this.loadImage(
-        this.filterBackgroundImg(backgroundImg)
-      );
-    } catch(e) {
-      throw Error(e);
-    }
   }
 
   async getImageData({
@@ -85,6 +54,6 @@ export default class CanvasImage implements ICanvasImage {
       ? propsHeight
       : _height;
 
-    return this.ctx.getImageData(x, y, width as number, height as number);
+    return this.ctx.getImageData(x, y, width, height);
   }
 }

@@ -1,12 +1,11 @@
 import lightOrDarkColor from './lib/lightOrDarkColor';
-import CanvasImage from './lib/canvasImage';
+import CanvasImage, {IGetImageDataParams} from './lib/canvasImage';
 import {BRIGHTNESS_DEGREE} from './constants/degrees';
 import getBrightness from './lib/brightness';
 import {rgbaToRgb} from './lib/conversion';
 
-interface ILightOrDarkParams {
-  backgroundImg?: CanvasImageSource;
-  targetText?: HTMLElement;
+interface ILightOrDarkParams extends IGetImageDataParams {
+  image: string;
   color?: string;
 }
 
@@ -21,10 +20,8 @@ function filterBrightness(imageData: Uint8ClampedArray) {
     const b = _imageData[idx + 2];
     const a = (_imageData[idx + 3] / 255);
 
-    // @TODO: rgbaToRgb 로직 재검토
     brightnessArr.push(
-      // getBrightness(rgbaToRgb(r, g, b, a))
-      getBrightness({r, g, b})
+      getBrightness(rgbaToRgb(r, g, b, a))
     );
   }
 
@@ -48,24 +45,15 @@ function checkLightOrDark(brightnessArr: number[]) {
     : 'dark';
 }
 
-function backgroundImgAndText(backgroundImg: CanvasImageSource, targetText: HTMLElement) {
-  return null;
-}
-
-function onlyBackgroundImg(backgroundImg: CanvasImageSource) {
-  const canvasImage = new CanvasImage(backgroundImg);
-  const imageData = canvasImage.getImageData().data;
-  const brightnessArr = filterBrightness(imageData);
-
-  return checkLightOrDark(brightnessArr);
-}
-
-export default function lightOrDark({
-  backgroundImg,
-  targetText,
-  color
+export default async function lightOrDark({
+  image,
+  color,
+  x,
+  y,
+  width,
+  height
 }: ILightOrDarkParams) {
-  if (!backgroundImg && !targetText && !color) {
+  if (!image && !color) {
     return null;
   }
 
@@ -73,7 +61,14 @@ export default function lightOrDark({
     return lightOrDarkColor(color);
   }
 
-  return (backgroundImg && targetText)
-    ? backgroundImgAndText(backgroundImg, targetText)
-    : onlyBackgroundImg(backgroundImg);
+  const canvasImage = new CanvasImage(image);
+  const {data: imageData} = await canvasImage.getImageData({
+    x,
+    y,
+    width,
+    height
+  });
+  const brightnessArr = filterBrightness(imageData);
+
+  return checkLightOrDark(brightnessArr);
 }

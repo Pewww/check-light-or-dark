@@ -1,6 +1,6 @@
 {
   "name": "is-light-or-dark",
-  "version": "0.0.52",
+  "version": "0.0.6",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
