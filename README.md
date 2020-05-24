@@ -2,7 +2,7 @@
 Check whether your image and color is light or dark!
 
 <details>
-  <summary><b>Color</b></summary>
+  <summary><b>Color</b></summary><br>
   
   [https://www.npmjs.com/package/@check-light-or-dark/color](https://www.npmjs.com/package/@check-light-or-dark/color)
 
@@ -38,7 +38,6 @@ Check whether your image and color is light or dark!
   | paramters 	| description 	| required 	|
   |--------------	|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|----------	|
   | color: string 	| Color to check whether it is light or dark. (Hex, Rgb, Rgba) 	| O 	|
-  ||
 
   ## Example
   ```JSX
@@ -94,9 +93,9 @@ Check whether your image and color is light or dark!
   ![Color Example](./images/color-example.png)
 
 </details>
-<br>
+
 <details>
-  <summary><b>Image</b></summary>
+  <summary><b>Image</b></summary><br>
 
   [https://www.npmjs.com/package/@check-light-or-dark/image](https://www.npmjs.com/package/@check-light-or-dark/image)
 
