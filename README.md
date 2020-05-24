@@ -90,7 +90,7 @@ Check whether your image and color is light or dark!
   export default TestPage;
   ```
 
-  ![Color Example](./images/color-example.png)
+  ![Color Example](https://user-images.githubusercontent.com/23455736/82748821-d7ae1780-9ddf-11ea-910e-01bcb9600cf9.png)
 
 </details>
 
@@ -186,7 +186,7 @@ Check whether your image and color is light or dark!
   export default TestPage;
   ```
 
-  ![Image Example1](./images/image-example1.png)
+  ![Image Example1](https://user-images.githubusercontent.com/23455736/82748841-fc09f400-9ddf-11ea-8f67-0a4630836ed1.png)
 
   2. With Parameters
   ```JSX
@@ -244,6 +244,6 @@ Check whether your image and color is light or dark!
   export default TestPage;
   ```
 
-  ![Image Example2](./images/image-example2.png)
+  ![Image Example2](https://user-images.githubusercontent.com/23455736/82748855-12b04b00-9de0-11ea-940c-84c5a9271513.png)
 
 </details>
