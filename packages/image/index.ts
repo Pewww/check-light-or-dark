@@ -33,18 +33,18 @@ function filterBrightness(imageData: Uint8ClampedArray) {
 }
 
 function checkLightOrDark(brightnessArr: number[]) {
-  const lightArr = [];
-  const darkArr = [];
+  let lightCnt = 0;
+  let darkCnt = 0;
 
   brightnessArr.forEach(b => {
     const isLight = b > BRIGHTNESS_DEGREE;
 
     isLight
-      ? lightArr.push(1)
-      : darkArr.push(1);
+      ? lightCnt += 1
+      : darkCnt += 1;
   });
 
-  return lightArr.length > darkArr.length
+  return lightCnt > darkCnt
     ? 'light'
     : 'dark';
 }
