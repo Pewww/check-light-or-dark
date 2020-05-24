@@ -1,0 +1,18 @@
+{
+  "name": "@check-light-or-dark/image",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": "https://github.com/Pewww/light-or-dark.git",
+  "author": "Pewww <jung22337@naver.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^3.9.3"
+  },
+  "dependencies": {
+    "@check-light-or-dark/utils": "1.0.0"
+  }
+}

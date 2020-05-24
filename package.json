@@ -1,15 +1,6 @@
 {
-  "name": "is-light-or-dark",
-  "version": "0.0.7",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "build": "tsc"
-  },
-  "repository": "https://github.com/Pewww/light-or-dark.git",
-  "author": "Pewww <jung22337@naver.com>",
-  "license": "MIT",
-  "devDependencies": {
-    "typescript": "^3.9.2"
-  }
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
 }
