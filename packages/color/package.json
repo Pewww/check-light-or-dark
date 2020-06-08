@@ -1,6 +1,6 @@
 {
   "name": "@check-light-or-dark/color",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -13,6 +13,6 @@
     "typescript": "^3.9.3"
   },
   "dependencies": {
-    "@check-light-or-dark/utils": "1.0.0"
+    "@check-light-or-dark/utils": "1.0.1"
   }
 }
