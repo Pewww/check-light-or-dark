@@ -27,7 +27,7 @@ const {default: lightOrDarkImage} = require('@check-light-or-dark/image');
 ### Document
 | paramters 	| description 	| required 	|
 |--------------	|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|----------	|
-| image: string 	| Image src to check whether it is light or dark. 	| O 	|
+| image: string 	| Image src to check whether it is light or dark or neutral. 	| O 	|
 | x: number 	| The x coordinate (in pixels) of the upper-left corner to start copy from image. 	| X 	|
 | y: number 	| The y coordinate (in pixels) of the upper-left corner to start copy from image. 	| X 	|
 | width: number 	| The width of the rectangular area(image) you will copy. 	| X 	|
