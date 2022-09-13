@@ -29,7 +29,10 @@ export default class CanvasImage implements ICanvasImage {
       image.setAttribute('crossOrigin', 'anonymous');
 
       image.onload = () => {
+        this.ctx.canvas.width = image.width;
+        this.ctx.canvas.height = image.height;
         this.ctx.drawImage(image, 0, 0);
+
         resolve(image);
       };
     });
