@@ -44,6 +44,10 @@ function checkLightOrDark(brightnessArr: number[]) {
       : darkCnt += 1;
   });
 
+  if (lightCnt === darkCnt) {
+    return 'neutral';
+  }
+
   return lightCnt > darkCnt
     ? 'light'
     : 'dark';
@@ -55,7 +59,7 @@ export default async function lightOrDark({
   y,
   width,
   height
-}: ILightOrDarkParams) {
+}: ILightOrDarkParams): Promise<'neutral' | 'light' | 'dark'> {
   if (!image) {
     return null;
   }
